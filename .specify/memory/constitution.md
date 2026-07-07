@@ -1,50 +1,39 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: 0.0.0 → 1.0.0
+- Modified principles: None → MVP-First Scope Discipline, Simple Maintainable Architecture, Secure Input Handling and Safe Rendering, Testable User Journeys, Cross-Platform Reliability
+- Added sections: Implementation Constraints, Quality Gates
+- Removed sections: None
+- Templates requiring updates: ⚠ pending .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+
+# RSS Feed Reader Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. MVP-First Scope Discipline
+The project MUST deliver the smallest slice that proves the subscription-management experience before adding feed fetching, persistence, or visual polish. Any proposed feature outside the current MVP scope MUST be documented as Extended-MVP or post-MVP and explicitly deferred. This keeps the proof-of-concept focused, reviewable, and fast to build.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Simple, Maintainable Architecture
+The backend and frontend MUST use clear, single-purpose components and avoid premature abstraction. Shared logic MUST be extracted only when it is reused in more than one place, and the codebase MUST remain easy to read for another contributor. Models, API contracts, and UI state MUST stay minimal and explicit.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Secure Input Handling and Safe Rendering
+Feed URLs and any user-supplied content MUST be treated as untrusted. The application MUST avoid unsafe HTML rendering, MUST handle malformed input predictably, and MUST not assume that a pasted URL or feed payload is safe to process without validation. When feed fetching is introduced, sanitization and explicit error handling are mandatory.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Testable User Journeys
+Each user-visible behavior MUST have a concrete acceptance scenario that can be verified manually or automatically before implementation is considered complete. The MVP MUST be testable by adding a subscription URL and confirming that the subscription appears in the UI. New behavior without a clear verification step is not accepted.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Cross-Platform Reliability
+The application MUST be buildable and runnable on Windows, macOS, and Linux without relying on OS-specific assumptions. Local configuration, including ports and API base URLs, MUST remain consistent and documented so a fresh clone can be verified with the same workflow.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Implementation Constraints
+The project MUST use the agreed technology stack of ASP.NET Core Web API for the backend and Blazor WebAssembly for the frontend. The MVP MUST remain limited to adding a subscription by URL and displaying the subscription list. In-memory storage is acceptable for the MVP, but persistence and background processing are explicitly deferred until a later phase. Configuration and routing MUST be verified before feature work continues.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Quality Gates
+Work is not complete until the relevant build and runtime checks have been performed and the user-visible behavior has been verified. Before a feature is considered done, the implementation MUST be checked for build errors, the expected UI or API behavior MUST be exercised, and any scope changes MUST be reflected in the relevant spec or plan documents. Pull requests MUST note which constitution principles apply to the change.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution supersedes ad hoc development practices for this repository. Any amendment MUST update the constitution and any affected planning or specification artifacts, and MUST include a clear rationale for the change. Versioning follows semantic versioning: major changes remove or redefine core principles, minor changes add or materially expand guidance, and patch changes clarify wording or improve non-semantic guidance. Compliance reviews MUST verify that implementation decisions remain consistent with these principles.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-07-07 | **Last Amended**: 2026-07-07
